@@ -7,26 +7,40 @@ import {
 } from "react-router-dom";
 import './App.css';
 
+const Us = 'http://localhost:3000/users'
+
 export default class App extends React.Component {
+
+  state = {
+    users : []
+  };
+
+  componentDidMount() {
+    fetch(Us)
+    .then(res => res.json())
+    .then(users => this.setState({
+      users : users
+   }))
+ }
 
   render () {
   return (
+    <Router>
+      <Switch>
     <div className="App">
+      
+        
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        
         <p>
-          Hello Michael!
+          Hello  Michael!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       
       </header>
+      
     </div>
+    </Switch>
+    </Router>
   );
 }
 }
